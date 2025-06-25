@@ -1,6 +1,7 @@
 import ResponsiveDrawer from "./components/layout"
 import { Route, Routes } from "react-router-dom"
-import Home from "./components/home"
+import Home from "./views/home"
+import Projects from "./views/projects"
 
 function App() {
  
@@ -16,8 +17,9 @@ function App() {
        <Routes>
            
    
-         <Route path="/" element={<ResponsiveDrawer />} >
-          <Route path="home" element={<Home/>}/>
+         <Route path="" element={<ResponsiveDrawer />} >
+          <Route path="/projects" element={<Projects/>}/>
+          <Route path="/" element={<Home/>}/>
          </Route>
        
        </Routes>

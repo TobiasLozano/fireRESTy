@@ -9,22 +9,22 @@ TODO features
 - upload JSON (storing confidential data)
     - Local storage vs Cookies
 - Get collection names
-    - generate scheme from collection
+    - generate schema from collection
 - Table data 
 - Editable fields
 - Delete rows  
 
-- export scheme to SQL, Mongodb scheme
+- export scheme to SQL, Mongodb schema
     - Required fields
     - bson types [[MongoDB docs](https://www.mongodb.com/docs/manual/reference/bson-types/)]
-    - scheme depth
+    - schema depth
 
 
 
 <ins>Backend<ins>
 - create express API
 - save encrypted firebase data
-- Save databases schemes, collection endpoints (mongoDB), run migration button
+- Save databases schemas, collection endpoints (mongoDB), run migration button
 - generate endpoints (as postgREST)
 [[PostgREST docs](https://docs.postgrest.org/en/v13/references/api/tables_views.html)]
 

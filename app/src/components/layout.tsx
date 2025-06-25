@@ -50,24 +50,25 @@ export default function ResponsiveDrawer() {
         </Toolbar>
        
       <List>
-        
-        <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-          <ListItem  disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                <SourceIcon />
-              </ListItemIcon>
-              <ListItemText primary='Projects' />
-            </ListItemButton>
-          </ListItem>
-        </Link>
-                <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>
+    
+                <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
           <ListItem  disablePadding>
             <ListItemButton>
               <ListItemIcon>
                 <HomeFilled />
               </ListItemIcon>
               <ListItemText primary='Home' />
+            </ListItemButton>
+          </ListItem>
+        </Link>
+            
+        <Link to="/projects" style={{ textDecoration: 'none', color: 'inherit' }}>
+          <ListItem  disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                <SourceIcon />
+              </ListItemIcon>
+              <ListItemText primary='Projects' />
             </ListItemButton>
           </ListItem>
         </Link>
@@ -95,7 +96,7 @@ export default function ResponsiveDrawer() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography fontSize={25} noWrap component="div" fontFamily="Gloria Hallelujah">
+          <Typography variant='h5' noWrap component="div" fontFamily="Gloria Hallelujah">
             FireRESTy
           </Typography>
         </Toolbar>
