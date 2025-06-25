@@ -50,10 +50,9 @@ export default function ProjectForm({ open }: { open: boolean }) {
       }
     }
   };
-  const handleClearProject=()=>{
-        projectContext?.clearProject();
-
-  }
+  const handleClearProject = () => {
+    projectContext?.clearProject();
+  };
 
   return (
     <Box textAlign="center" display={open ? "block" : "none"}>
@@ -71,7 +70,8 @@ export default function ProjectForm({ open }: { open: boolean }) {
       <Typography mb={1} variant="body1">
         It should look like this:
       </Typography>
-      <Box textAlign="left">
+
+      <Box textAlign="left" className="json-view">
         <JsonView
           data={json}
           shouldExpandNode={allExpanded}
@@ -99,8 +99,17 @@ export default function ProjectForm({ open }: { open: boolean }) {
       <Typography variant="caption" display="block">
         {file ? `File: ${file.name}` : "No file selected"}
       </Typography>
-      <Box mt={2}>
+      <Box mt={2} textAlign="right">
+         <Button
+          onClick={handleClearProject}
+          variant="outlined"
+          color="error"
+        >
+          Clear
+        </Button>
         <Button
+          sx={{ ml: 2 }}
+
           onClick={handleSaveJson}
           disabled={!file}
           variant="contained"
@@ -108,16 +117,8 @@ export default function ProjectForm({ open }: { open: boolean }) {
         >
           Save
         </Button>
-<Box mt={1}>
 
-         <Button
-          onClick={handleClearProject}
-           variant="contained"
-          color="error"
-          >
-          Clear
-        </Button>
-          </Box>
+       
       </Box>
     </Box>
   );

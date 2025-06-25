@@ -2,8 +2,6 @@ import { Box, Typography, Button } from "@mui/material";
 import DashedBox from "../components/dashed-box";
 import React from "react";
 import ProjectForm from "../components/project-form";
-import DataTable from "../components/data-table";
-import SchemaVisualizer from "../components/scheme-visualizer";
 
 export default function Projects() {
       const [open, setOpen] = React.useState(false);
@@ -26,12 +24,8 @@ export default function Projects() {
        <ProjectForm open={open}  />
         </Box>
      </DashedBox>
-          <Typography variant="h6" my={2}>Table I'll use to show data</Typography>
+          
 
-       <DataTable    />
-          <Typography variant="h6" my={2}>Schema visualizer</Typography>
-
-       <SchemaVisualizer />
     </Box>
   );
 
