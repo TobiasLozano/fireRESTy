@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { CssBaseline } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
+import ProjectProvider from "./providers/context-provider.tsx";
 
 const darkTheme = createTheme({
   typography:{
@@ -18,7 +19,10 @@ createRoot(document.getElementById("root")!).render(
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <BrowserRouter>
+      <ProjectProvider>
+
       <App />
+      </ProjectProvider>
       </BrowserRouter>
     </ThemeProvider>
   </StrictMode>

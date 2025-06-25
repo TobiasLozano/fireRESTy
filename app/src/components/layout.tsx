@@ -16,6 +16,7 @@ import Typography from '@mui/material/Typography';
 import logo from "../assets/logo.png"
 import { Outlet } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { ProjectContext } from '../providers/context';
  const drawerWidth = 250;
 
  
@@ -24,6 +25,8 @@ import { Link } from 'react-router-dom';
 export default function ResponsiveDrawer() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
+          const projectContext = React.useContext(ProjectContext);
+
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -72,6 +75,13 @@ export default function ResponsiveDrawer() {
             </ListItemButton>
           </ListItem>
         </Link>
+  <ListItem  disablePadding>
+            <ListItemButton>
+             
+              <ListItemText primary={projectContext?.projectId?`${projectContext?.projectId}`:'No project saved'} />
+            </ListItemButton>
+          </ListItem>
+        
       </List>
      </div>
   );

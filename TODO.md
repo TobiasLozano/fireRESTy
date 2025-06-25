@@ -19,6 +19,17 @@ TODO features
     - bson types [[MongoDB docs](https://www.mongodb.com/docs/manual/reference/bson-types/)]
     - schema depth
 
+Load JSON local storage
+Generate endpoints to query 
+Use headers in each request 
+Generate schemas (save history using project Id)
+
+Drawer items
+Select project, 
+Schemas 
+Endpoints 
+Data (tables)
+
 
 
 <ins>Backend<ins>
