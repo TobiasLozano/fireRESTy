@@ -5,7 +5,7 @@ import Projects from "./views/projects"
 import './App.css'
 import Schemas from "./views/schemas"
 import Endpoints from "./views/endpoints"
-import DataView from "./views/data-table"
+import DataView from "./views/collections-data"
 
 function App() {
  
