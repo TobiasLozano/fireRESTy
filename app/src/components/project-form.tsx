@@ -101,7 +101,7 @@ export default function ProjectForm({ open,projectId }: { open: boolean, project
         tabIndex={-1}
         startIcon={<CloudUploadIcon />}
       >
-        {projectId ? "Change file" : "Upload file"}
+        {projectId ? "Change file" : "Select file"}
     
          <VisuallyHiddenInput
           type="file"

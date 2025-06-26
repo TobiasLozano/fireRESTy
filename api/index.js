@@ -15,7 +15,7 @@ const app = express();
 app.use(cors());
 const port = 3000;
 
-mongoose.connect('mongodb://localhost:27017/firestore_schemas')
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('🟢 MongoDB conectado'))
   .catch(err => console.error('🔴 Error al conectar MongoDB', err));
 
