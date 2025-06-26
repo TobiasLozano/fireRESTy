@@ -39,12 +39,11 @@
 1. Clone the repository:
    ```bash
    git clone https://github.com/TobiasLozano/fireRESTy.git
-   cd FireRESTy```
+   cd FireRESTy
 2. Run all services:
   ```bash 
   docker-compose up --build
   ```
-
 
 3. Visit:
 
