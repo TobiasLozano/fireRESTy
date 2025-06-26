@@ -4,22 +4,32 @@ import EncryptedLocalStorage from "../lib/core/local-storage";
 import type ServiceAccount from "../lib/interfaces/service-account";
 import isServiceAccount from "../lib/utils/check-service-account-object";
 import { ProjectContext } from "./context";
- 
+import HttpClient from "../lib/network/http-client";
+import type { Collection } from "../lib/interfaces/project";
 
-export  default function ProjectProvider({ children }: React.PropsWithChildren<object>) {
-   
-  const [projectId, setProjectId] = React.useState<string|null>(null)
+export default function ProjectProvider({
+  children,
+}: React.PropsWithChildren<object>) {
+  const [projectId, setProjectId] = React.useState<string | null>(null);
+  const [collections, setCollections] = React.useState<Collection[]>([]);
 
   const setProject = async (project: ServiceAccount) => {
     setProjectId(project.project_id);
     const encryption = new Encryption();
     const ls = new EncryptedLocalStorage(encryption);
+
+    const client = new HttpClient(project);
+    const response = await client.getCollections();
+    setCollections(
+      response.collections || []
+    );
     ls.saveItem(project.project_id, JSON.stringify(project));
   };
   const clearProjectId = () => {
     setProjectId(null);
   };
 
+  
   const getProject = async () => {
     if (projectId) {
       const encryption = new Encryption();
@@ -47,6 +57,7 @@ export  default function ProjectProvider({ children }: React.PropsWithChildren<o
     <ProjectContext.Provider
       value={{
         projectId,
+        collections,
         clearProjectId,
         setProject,
         getProject,

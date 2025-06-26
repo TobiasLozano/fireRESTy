@@ -114,7 +114,7 @@ export default function ResponsiveDrawer() {
                   <ListItemIcon>
                     <SchemaRounded />
                   </ListItemIcon>
-                  <ListItemText primary="Schemas" />
+                  <ListItemText primary="Saved schemas" />
                 </ListItemButton>
               </ListItem>
             </Link>

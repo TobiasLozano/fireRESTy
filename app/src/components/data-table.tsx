@@ -28,6 +28,10 @@ export default function CollectionsDataTable({
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+  const columnKeys = Object.entries(rows[0])
+                  .slice(1)
+                  .map(([key]) => key);
+
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
@@ -52,13 +56,13 @@ export default function CollectionsDataTable({
           {rows.length > 0 && (
             <TableHead>
               <TableRow>
-                {Object.entries(rows[0]).slice(1).map(([key]) => {
-                  return (
-                    <TableCell key={key} scope="row" style={{ width: 160 }}>
-                      {key} 
-                    </TableCell>
-                  );
-                })}
+                {columnKeys.map((key) => {
+                    return (
+                      <TableCell key={key} scope="row" style={{ width: 160 }}>
+                        {key}
+                      </TableCell>
+                    );
+                  })}
               </TableRow>
             </TableHead>
           )}
@@ -68,18 +72,20 @@ export default function CollectionsDataTable({
               : rows
             ).map((row) => {
               const { id, ...rowData } = row;
+               
               return (
                 <TableRow key={id}>
                   {rowData &&
-                    Object.entries(rowData).map(([key, value]) => {
+                   columnKeys.map((key) => {
+                    const value = rowData[key];
                       return (
                         <TableCell key={key} scope="row" style={{ width: 160 }}>
                           {(typeof value === "string" ||
                             typeof value === "number" ||
                             typeof value === "boolean") && (
-                            <span>{value.toString()}</span>
+                            <span>{String(value)}</span>
                           )}
-                          {typeof value === "object" && (
+                          {typeof value === "object" && value !== null && (
                             <span className="monospace">
                               {JSON.stringify(value)}
                             </span>

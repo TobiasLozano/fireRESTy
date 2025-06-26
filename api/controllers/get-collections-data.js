@@ -1,0 +1,27 @@
+import { getFirestoreCollectionsInfo } from "../services/firebase/get-collections.js";
+
+export default async function listCollections   (req, res)  {
+  try {
+    const headers = req.headers;
+
+    const serviceAccount = {
+      type: headers["type"],
+      project_id: headers["project_id"],
+      private_key_id: headers["private_key_id"],
+      private_key: Buffer.from(headers["private_key_b64"], "base64").toString("utf-8"), 
+      client_email: headers["client_email"],
+      client_id: headers["client_id"],
+      auth_uri: headers["auth_uri"],
+      token_uri: headers["token_uri"],
+      auth_provider_x509_cert_url: headers["auth_provider_x509_cert_url"],
+      client_x509_cert_url: headers["client_x509_cert_url"],
+    };
+
+    const collections = await getFirestoreCollectionsInfo(serviceAccount);
+
+    res.json({ success: true, collections });
+  } catch (error) {
+    console.error("Error listing collections:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
