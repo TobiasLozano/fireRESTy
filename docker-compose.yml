@@ -7,6 +7,7 @@ services:
       - "3000:3000"
     volumes:
       - ./api:/app
+      - /app/node_modules         # protege node_modules
     environment:
       - MONGO_URI=mongodb://mongo:27017/firestore_schemas
     depends_on:
@@ -20,9 +21,10 @@ services:
       - "5173:5173"
     volumes:
       - ./app:/app
+      - /app/node_modules         # protege node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
-      - VITE_ENCRYPTION_KEY = 1234567890abcdef
+      - VITE_ENCRYPTION_KEY=1234567890abcdef
     stdin_open: true
     tty: true
 

@@ -1,8 +1,8 @@
 FROM node:18
 
-WORKDIR /app
+WORKDIR /api
 
-COPY package*.json ./
+COPY package.json package-lock.json ./
 RUN npm install
 
 COPY . .
