@@ -80,7 +80,7 @@ export default function CollectionsDataTable({
                             <span>{value.toString()}</span>
                           )}
                           {typeof value === "object" && (
-                            <span className="json-view">
+                            <span className="monospace">
                               {JSON.stringify(value)}
                             </span>
                           )}

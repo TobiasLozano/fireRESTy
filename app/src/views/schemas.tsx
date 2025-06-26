@@ -3,7 +3,8 @@ import DashedBox from "../components/dashed-box";
 import React from "react";
 import { ProjectContext } from "../providers/context";
 import SchemaVisualizer from "../components/scheme-visualizer";
-
+import { mockSchemas } from "../lib/interfaces/schema";
+import formatDate from "../lib/utils/format-date";
 export default function Schemas() {
   const [projectId, setProjectId] = React.useState<string | null>(null);
 
@@ -15,12 +16,18 @@ export default function Schemas() {
     <Box>
       <DashedBox maxWidth={700} mb={2}>
         <Box p={4} textAlign="center">
-          <Typography variant="h5">You don't have any projects</Typography>
-          <Typography variant="h6" my={2}>
-            Schema visualizer
-          </Typography>
+          <Typography variant="h5">Saved schema snapshots</Typography>
+
           <Box mt={4} textAlign={"left"}>
-            <SchemaVisualizer />
+            {mockSchemas.map((schema, index) => (
+              <Box>
+                <Typography my={2} textAlign={"right"} key={index}>
+                  Date: {formatDate(schema.dateCreated)}
+                </Typography>
+
+                <SchemaVisualizer schema={{ ...schema }} />
+              </Box>
+            ))}
           </Box>
         </Box>
       </DashedBox>

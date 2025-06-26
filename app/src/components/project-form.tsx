@@ -30,9 +30,11 @@ const json = {
   auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
   client_x509_cert_url: "https://www.googleapis.com/robot/v1/#######/",
 };
-export default function ProjectForm({ open }: { open: boolean }) {
+export default function ProjectForm({ open,projectId }: { open: boolean, projectId?: string|null }) {
+  
   const [file, setFile] = useState<File | null>();
   const projectContext = useContext(ProjectContext);
+  
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
@@ -56,7 +58,14 @@ export default function ProjectForm({ open }: { open: boolean }) {
 
   return (
     <Box textAlign="center" display={open ? "block" : "none"}>
-      <Typography variant="h5" fontWeight="bold" component="h2" mb={2}>
+      {projectId ?
+      <>
+       <Typography variant="h5" fontWeight="bold" component="h2" mb={2}>
+        Theres a project loaded
+      </Typography>
+      </>:
+    <>
+    <Typography variant="h5" fontWeight="bold" component="h2" mb={2}>
         Lets create a new project
       </Typography>
       <Typography mb={1} variant="body1">
@@ -71,16 +80,20 @@ export default function ProjectForm({ open }: { open: boolean }) {
         It should look like this:
       </Typography>
 
-      <Box textAlign="left" className="json-view">
+      <Box textAlign="left" className="monospace">
         <JsonView
           data={json}
           shouldExpandNode={allExpanded}
           style={darkStyles}
         />
       </Box>
+    
+
       <Typography variant="caption" mb={2} display="block">
         It will be stored securely in your local storage, not in the database :)
       </Typography>
+         </> 
+      }
       <Button
         component="label"
         role={undefined}
@@ -88,8 +101,9 @@ export default function ProjectForm({ open }: { open: boolean }) {
         tabIndex={-1}
         startIcon={<CloudUploadIcon />}
       >
-        Upload file
-        <VisuallyHiddenInput
+        {projectId ? "Change file" : "Upload file"}
+    
+         <VisuallyHiddenInput
           type="file"
           onChange={handleFileChange}
           multiple={false}
