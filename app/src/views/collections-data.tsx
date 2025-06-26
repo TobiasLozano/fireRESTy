@@ -21,11 +21,13 @@ export default function DataView() {
     if (project) {
       const client = new HttpClient(project);
       await client.generateSchema(selectedCollection?.name || "");
+      alert(
+        `Schema for collection ${selectedCollection?.name} has been saved successfully!`
+      );
     }
   };
   React.useMemo(() => {
     if (collections.length > 0) {
-      console.log(selectedCollection);
       setselectedCollection(collections[tabIndex]);
     }
   }, [tabIndex]);
@@ -34,7 +36,7 @@ export default function DataView() {
     if (collections.length > 0) {
       setselectedCollection(collections[0]);
     }
-  }, []);
+  }, [collections]);
   React.useMemo(() => {
     setProjectId(projectContext?.projectId || null);
   }, [projectContext?.projectId]);

@@ -1,6 +1,8 @@
 import { Buffer } from "buffer";
 import { generateCollectionSchema } from "../services/firebase/generate-schema.js";
-export default async function  generateSchema  (req, res)  {
+import Schema from "../models/collection-schema.js";
+
+export default async function generateSchema(req, res) {
   try {
     const headers = req.headers;
     const collectionName = req.query.collection;
@@ -24,13 +26,17 @@ export default async function  generateSchema  (req, res)  {
       client_x509_cert_url: headers["client_x509_cert_url"],
     };
 
-    const schema = await generateCollectionSchema(serviceAccount, collectionName);
+    const schema = await generateCollectionSchema(
+      serviceAccount,
+      collectionName
+    );
     console.log(JSON.stringify(schema));
+    const _schema = new Schema(schema);
+    await _schema.save();
 
- 
-     res.json(schema);
+    res.json(schema);
   } catch (err) {
     console.error("Error generating schema:", err);
     res.status(500).json({ error: "Internal Server Error" });
   }
-};
+}

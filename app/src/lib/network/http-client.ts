@@ -32,6 +32,13 @@ export default class HttpClient {
     });
     return response.json();
   }
+
+    async getSchemas(projectId: string) {
+    const response = await fetch(`${this.baseUrl}/schemas/${projectId}`, {
+      method: "GET",
+    });
+    return response.json();
+  }
   async get(collection: string) {
     const response = await fetch(`${this.baseUrl}/${collection}`, {
       method: "GET",
