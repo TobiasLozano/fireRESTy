@@ -1,34 +1,19 @@
 services:
-  api:
-    image: tobiaslozano/fireresty-api:latest
+  fireressty:
+    container_name: fireressty
     build:
-      context: ./api
-    container_name: express_api
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    volumes:
-      - ./api:/app
-      - /app/node_modules        
-    environment:
+    environment: 
+      - VITE_ENCRYPTION_KEY=1234567890abcdef
       - MONGO_URI=mongodb://mongo:27017/firestore_schemas
     depends_on:
       - mongo
-
-  app:
-    image: tobiaslozano/fireresty-app:latest
-    build:
-      context: ./app
-    container_name: react_frontend
-    ports:
-      - "5173:5173"
     volumes:
-      - ./app:/app
-      - /app/node_modules        
-    environment:
-      - CHOKIDAR_USEPOLLING=true
-      - VITE_ENCRYPTION_KEY=1234567890abcdef
-    stdin_open: true
-    tty: true
+      - /path/to/storage:/data
+    restart: unless-stopped
 
   mongo:
     image: mongo:6.0

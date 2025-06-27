@@ -37,6 +37,15 @@ app.get('/schemas/:id', getSchemaByProjectId);
 app.put('/schemas/:id', updateSchema);
 app.delete('/schemas/:id', deleteSchema);
 
+app.use((req, res) => {
+    res.sendFile('./public/index.html', { root: '.' }, (err) => {
+        if (err) {
+            console.error('Error sending index file:', err);
+            res.status(404).send('Page not found');
+        }
+    });
+})
+
 app.listen(port, () => {
   console.log(`Server running on port http://localhost:${port}`);
 });
