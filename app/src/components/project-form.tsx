@@ -39,13 +39,11 @@ export default function ProjectForm({ open,projectId }: { open: boolean, project
     const selectedFile = event.target.files?.[0];
     if (selectedFile) {
       setFile(selectedFile);
-      console.log("Selected file:", selectedFile);
     }
   };
   const handleSaveJson = async () => {
     if (file) {
       const data = await file.text();
-      console.log(data);
       const project = JSON.parse(data);
       if (isServiceAccount(project as unknown as Record<string, unknown>)) {
         projectContext?.setProject(project);

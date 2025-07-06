@@ -14,7 +14,6 @@ export default function ProjectProvider({
   const [collections, setCollections] = React.useState<Collection[]>([]);
 
   const setProject = async (project: ServiceAccount) => {
-    setProjectId(project.project_id);
     const encryption = new Encryption();
     const ls = new EncryptedLocalStorage(encryption);
 
@@ -24,6 +23,8 @@ export default function ProjectProvider({
       response.collections || []
     );
     ls.saveItem(project.project_id, JSON.stringify(project));
+    setProjectId(project.project_id);
+
   };
   const clearProjectId = () => {
     setProjectId(null);
@@ -35,7 +36,9 @@ export default function ProjectProvider({
       const encryption = new Encryption();
       const ls = new EncryptedLocalStorage(encryption);
       const rawProject = ls.getItem(projectId);
-      const project: ServiceAccount = JSON.parse(rawProject || "{}");
+      if (!rawProject) return null;
+      console.log(rawProject);
+      const project: ServiceAccount = JSON.parse(rawProject );
       const isProject = isServiceAccount(
         project as unknown as Record<string, unknown>
       );
