@@ -1,7 +1,7 @@
 import crypto from "crypto-js";
 
 export default class Encryption {
-  private encryptionKey = import.meta.env.VITE_ENCRYPTION_KEY??'1234567890abcdef';
+  private encryptionKey = '1234567890abcdef';
 
   public encrypt(text: string): string {
 

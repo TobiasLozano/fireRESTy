@@ -22,9 +22,9 @@ app.use(cors());
 app.use(express.static('public'));
 const port = 3000;
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('🟢 MongoDB conectado'))
-  .catch(err => console.error('🔴 Error al conectar MongoDB', err));
+mongoose.connect('mongodb+srv://venttys:s5CReUCTug@cluster0.sqyyu78.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/test')
+  .then(() => console.log('🟢 MongoDB connected'))
+  .catch(err => console.error('🔴 Error connecting to MongoDB', err));
 
 // I'll use JSON to process data
 app.use(express.json());

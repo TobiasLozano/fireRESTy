@@ -33,7 +33,8 @@ export default function Endpoints() {
     }
     fetchSchemas();
   }, []);
-  const baseUrl = "http://localhost:3000/api";
+  const locationUrl = window.location.origin
+  const baseUrl = `${locationUrl}/api`;
   const methods = [
     { method: "POST", bgColor: "#4caf50", borderColor: "green" },
     { method: "GET", bgColor: "#1de9b6", borderColor: "cyan" },

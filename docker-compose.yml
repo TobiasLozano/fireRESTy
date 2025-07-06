@@ -1,26 +1,12 @@
 services:
-  fireressty:
+  fireresty:
     container_name: fireresty
     image: tobiaslozano/fireresty:latest
     ports:
       - "3000:3000"
-    environment: 
-      - VITE_ENCRYPTION_KEY=1234567890abcdef
-      - MONGO_URI=mongodb://mongo:27017/firestore_schemas
-    depends_on:
-      - mongo
     volumes:
       - /path/to/storage:/data
     restart: unless-stopped
-
-  mongo:
-    image: mongo:6.0
-    container_name: mongodb
-    restart: always
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo_data:/data/db
 
 volumes:
   mongo_data:
