@@ -1,6 +1,6 @@
 services:
   fireressty:
-    container_name: fireressty
+    container_name: fireresty
     image: tobiaslozano/fireresty:latest
     ports:
       - "3000:3000"
