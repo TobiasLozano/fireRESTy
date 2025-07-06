@@ -2,7 +2,7 @@ import type ServiceAccount from "../interfaces/service-account";
 
 export default class HttpClient {
   private serviceAccount: ServiceAccount;
-  private baseUrl: string = "http://localhost:3000";
+  private baseUrl: string = import.meta.env.BACKEND_URL??"http://localhost:3000";
   constructor(serviceAccount: ServiceAccount) {
     this.serviceAccount = serviceAccount;
   }
