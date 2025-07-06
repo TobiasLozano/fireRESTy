@@ -76,5 +76,6 @@ You will get an CURL example to test it
 ![Screenshot of endpoint schema page](/assets/WhatsApp%20Image%202025-07-06%20at%2012.21.17%20AM.jpeg)
 ## Watch the video for demo project
 [![Watch the video](/assets/fireResty%20logo.png)](/assets/Devlog%209-2025-06-26_05.25.44.mp4)
+Url: https://fireresty.onrender.com/
 ## You can check and star the DockerHub image for this project
 https://hub.docker.com/repository/docker/tobiaslozano/fireresty/general
