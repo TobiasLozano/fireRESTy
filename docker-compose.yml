@@ -1,6 +1,7 @@
 services:
   fireressty:
     container_name: fireressty
+    image: tobiaslozano/fireresty:latest
     build:
       context: .
       dockerfile: Dockerfile
