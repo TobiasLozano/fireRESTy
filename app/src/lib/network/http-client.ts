@@ -2,8 +2,9 @@ import type ServiceAccount from "../interfaces/service-account";
 
 export default class HttpClient {
   private serviceAccount: ServiceAccount;
-  private baseUrl: string = import.meta.env.VITE_BACKEND_URL??"http://localhost:3000";
+  private baseUrl: string;
   constructor(serviceAccount: ServiceAccount) {
+     this.baseUrl = import.meta.env.VITE_BACKEND_URL??"http://localhost:3000";
     this.serviceAccount = serviceAccount;
   }
   private getHeaders() {
