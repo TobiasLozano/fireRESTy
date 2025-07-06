@@ -2,9 +2,6 @@ services:
   fireressty:
     container_name: fireressty
     image: tobiaslozano/fireresty:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     environment: 
