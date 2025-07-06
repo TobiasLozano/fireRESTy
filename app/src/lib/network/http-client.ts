@@ -4,7 +4,7 @@ export default class HttpClient {
   private serviceAccount: ServiceAccount;
   private baseUrl: string;
   constructor(serviceAccount: ServiceAccount) {
-     this.baseUrl = import.meta.env.VITE_BACKEND_URL??"http://localhost:3000";
+     this.baseUrl = import.meta.env.VITE_BACKEND_URL??"https://fireresty.onrender.com";
     this.serviceAccount = serviceAccount;
   }
   private getHeaders() {
