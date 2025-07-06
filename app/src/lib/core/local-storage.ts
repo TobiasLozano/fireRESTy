@@ -7,14 +7,9 @@ export default class EncryptedLocalStorage {
   }
 
   public saveItem(key: string, data: string) {
-    if (typeof window !== "undefined") {
     localStorage.setItem(key, this.encryption.encrypt(data));
-    }
   }
   public getItem(key: string): string | null {
-    if (typeof window === "undefined") {
-      return null;
-    }
     const item = localStorage.getItem(key);
     if (item) {
       return this.encryption.decrypt(item);
