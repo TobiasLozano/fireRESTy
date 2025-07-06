@@ -5,11 +5,9 @@ import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableFooter from "@mui/material/TableFooter";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
+ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import PaginationControls from "./pagination-controls";
-import type { Collection } from "../lib/interfaces/project";
+ import type { Collection } from "../lib/interfaces/project";
 import { TableHead } from "@mui/material";
 
 /**
@@ -20,8 +18,8 @@ export default function CollectionsDataTable({
 }: {
   collection: Collection;
 }) {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [page] = React.useState(0);
+  const [rowsPerPage] = React.useState(5); 
   const rows = collection.data;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -32,8 +30,8 @@ export default function CollectionsDataTable({
                   .slice(1)
                   .map(([key]) => key);
 
-  const handleChangePage = (
-    event: React.MouseEvent<HTMLButtonElement> | null,
+/*   const handleChangePage = (
+  _event: React.MouseEvent<HTMLButtonElement> | null,
     newPage: number
   ) => {
     setPage(newPage);
@@ -44,7 +42,7 @@ export default function CollectionsDataTable({
   ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
+  }; */
 
   return (
     <Box>
@@ -103,7 +101,7 @@ export default function CollectionsDataTable({
             )}
           </TableBody>
           <TableFooter>
-            <TableRow>
+         {/*    <TableRow>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 25, { label: "All", value: -1 }]}
                 colSpan={3}
@@ -122,7 +120,7 @@ export default function CollectionsDataTable({
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 ActionsComponent={PaginationControls}
               />
-            </TableRow>
+            </TableRow> */}
           </TableFooter>
         </Table>
       </TableContainer>

@@ -7,6 +7,7 @@ import { type Schema } from "../lib/interfaces/schema";
 import { ExpandMore } from "@mui/icons-material";
 import { JsonView, allExpanded, darkStyles } from "react-json-view-lite";
 import HttpClient from "../lib/network/http-client";
+import type ServiceAccount from "../lib/interfaces/service-account";
 
 export default function Endpoints() {
   const [projectId, setProjectId] = React.useState<string | null>(null);
@@ -32,7 +33,7 @@ export default function Endpoints() {
     }
     fetchSchemas();
   }, []);
-  const baseUrl = "http:localhost:3000";
+  const baseUrl = "http://localhost:3000/api";
   const methods = [
     { method: "POST", bgColor: "#4caf50", borderColor: "green" },
     { method: "GET", bgColor: "#1de9b6", borderColor: "cyan" },
@@ -45,7 +46,7 @@ export default function Endpoints() {
   }, [projectContext?.projectId]);
   return (
     <Box>
-      <DashedBox maxWidth={700} mb={2}>
+      <DashedBox maxWidth={900} mb={2}>
         <Box p={4} textAlign="center">
           <Typography variant="h5">Project endpoints</Typography>
           <Typography variant="h6">Will be available soon</Typography>
@@ -59,9 +60,13 @@ export default function Endpoints() {
                   collection={collection}
                   method={method.method}
                   borderColor={method.borderColor}
-                  schema={schemas.find(
-                    (s) => s.collectionName === collection.name
-                  )}
+                  schema={
+                    schemas.length > 0
+                      ? schemas.find(
+                          (s) => s.collectionName === collection.name
+                        )
+                      : undefined
+                  }
                 />
               ))}
             </Box>
@@ -86,6 +91,9 @@ export function EndpointDetail({
   collection: { name: string };
   schema?: Schema;
 }) {
+  const projectContext = React.useContext(ProjectContext);
+  const [project, setProject] = React.useState<ServiceAccount | null>(null);
+
   const [showSchema, setShowSchema] = React.useState(false);
   const json: Record<string, unknown> = {};
   if (schema) {
@@ -93,6 +101,13 @@ export function EndpointDetail({
       json[field.name] = field.type;
     }
   }
+  const handleShowSchema = async (_showSchema: boolean) => {
+    setShowSchema(_showSchema);
+    if (projectContext) {
+      const _project = await projectContext?.getProject();
+      setProject(_project);
+    }
+  };
   return (
     <Box
       className="monospace"
@@ -113,16 +128,14 @@ export function EndpointDetail({
           </Box>
           {`${baseUrl}/${collection.name}`}
         </Box>
-        {method === "POST" && (
-          <Box textAlign="right">
-            <IconButton
-              aria-label="delete"
-              onClick={() => setShowSchema(!showSchema)}
-            >
-              <ExpandMore />
-            </IconButton>
-          </Box>
-        )}
+        <Box textAlign="right">
+          <IconButton
+            aria-label="delete"
+            onClick={() => handleShowSchema(!showSchema)}
+          >
+            <ExpandMore />
+          </IconButton>
+        </Box>
       </Box>
 
       {showSchema && (
@@ -133,6 +146,27 @@ export function EndpointDetail({
             shouldExpandNode={allExpanded}
             style={darkStyles}
           />
+          {project && method==='GET' && (
+            <>
+          <Typography my={2} variant="subtitle1">
+            CURL example:
+          </Typography>
+            <Typography mb={2} className="monospace" overflow="scroll" >
+              {`curl -X ${method} ${baseUrl}/${collection.name} \\ 
+--header 'type: service_account' \\' 
+--header 'project_id: ${project.project_id}' \\' 
+--header 'private_key_id: ${project.private_key_id}' \\' 
+--header 'private_key_b64: ${btoa(project.private_key)}' \\' 
+--header 'client_email: ${project.client_email}' \\' 
+--header 'client_id: ${project.client_id}' \\' 
+--header 'auth_uri: ${project.auth_uri}' \\' 
+--header 'token_uri: ${project.token_uri}' \\' 
+--header 'auth_provider_x509_cert_url: ${project.auth_provider_x509_cert_url}' \\' 
+--header 'client_x509_cert_url: ${project.client_x509_cert_url}'
+`}
+            </Typography>
+            </>
+          )}
         </Box>
       )}
     </Box>

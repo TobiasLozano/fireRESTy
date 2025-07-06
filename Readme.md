@@ -47,7 +47,30 @@
 
 3. Visit:
 
+    Backend API & React SSR: http://localhost:3000
 
-    Frontend: http://localhost:5173
+## Features
+### Home page
+Show info about the project
+![Screenshot of home page](/assets/Home.png)
 
-    Backend API: http://localhost:3000
+### Projects
+Here you can upload the firebase.cert.json file
+![Screenshot of upload file page](/assets/project%201.png)
+You can also delete the project data from local local storage or select another
+![Screenshot of clear page](/assets/Project%202.png)
+When a project is selected, you get access to next views:
+### Data
+Browse first 5 collections document and you can generate a mongoDB schema from that. Useful for data migration.
+![Screenshot of data collection page](/assets/Data.png)
+### Schemas
+You can browse schemas generated for your selected project and check for changes over schemas previously saved.
+![Screenshot of schemas page](/assets/schemas.png)
+### Endpoints
+You can see the available endpoints listed from collections.
+![Screenshot of endpoints page](/assets/endpoints%201.png)
+ If there is any schema saved from your collection, you will get it from here.
+![Screenshot of endpoint schema page](/assets/endpoints%202.png)
+You can interact with your Firestore DB with these endpoints via http request from Postman, your app, microcontrollers or whatever you need.
+You will get an CURL example to test it
+![Screenshot of endpoint schema page](/assets/WhatsApp%20Image%202025-07-06%20at%2012.21.17%20AM.jpeg)

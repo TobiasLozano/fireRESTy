@@ -53,7 +53,7 @@ export default function DataView() {
         <Typography variant="h5">{projectId}</Typography>
         <Tabs
           value={tabIndex}
-          onChange={(e, newValue) => setTabIndex(newValue)}
+          onChange={(_e, newValue) => setTabIndex(newValue)}
           centered
         >
           {collections.map((collection, index) => (
@@ -64,7 +64,7 @@ export default function DataView() {
           {selectedCollection && (
             <Box display="flex" justifyContent="end" gap={2}>
               <Typography variant="h6">
-                Collection length: ({selectedCollection.data.length} items)
+                Collection length: ({selectedCollection.length} items)
               </Typography>
               <Button variant="contained" onClick={handleGenerateSchema}>Save Schema</Button>
             </Box>
