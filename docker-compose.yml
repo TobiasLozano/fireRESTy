@@ -5,7 +5,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - MONGODB_URL=mongodb+srv://venttys:s5CReUCTug@cluster0.sqyyu78.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/test
+      - MONGODB_URL=mongodbURL
     volumes:
       - /path/to/storage:/data
     restart: unless-stopped
