@@ -16,13 +16,16 @@ import {
   updateDoc,
   deleteDoc,getCollectionData
 } from "./controllers/crud-collections.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.static('public'));
 const port = 3000;
 
-mongoose.connect('mongodb+srv://venttys:s5CReUCTug@cluster0.sqyyu78.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/test')
+mongoose.connect(process.env.MONGODB_URL)
   .then(() => console.log('🟢 MongoDB connected'))
   .catch(err => console.error('🔴 Error connecting to MongoDB', err));
 
